@@ -2,36 +2,81 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="260"
+        mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="250"
         x:Class="MenuExplicitApp.AuthorizationWindow"
-        Title="Авторизация" CanResize="False" Background="#D9E8F8" Padding="0" Foreground="Black">
-    <Border CornerRadius="8" Background="#E7EFFB" Margin="10" Padding="0">
-        <StackPanel>
-            <Border Background="#FFD639" Height="72" CornerRadius="8,8,0,0" Padding="10" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                    <TextBlock Text="АИС Отдел кадров" FontSize="20" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="Black" />
-                    <TextBlock Text="Версия 1.0.0.0" FontSize="12" HorizontalAlignment="Right" Margin="0,2,8,0" Foreground="Black" />
+        Title="Авторизация" CanResize="False" Background="#C8D9F5" Padding="0" Foreground="Black">
+    <Border Background="#C8D9F5" Padding="8">
+        <Border Background="#C8D9F5" CornerRadius="8" Padding="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="72" />
+                    <RowDefinition Height="32" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="28" />
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0" Background="#F8E07B" CornerRadius="8,8,0,0" Padding="0" HorizontalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="92" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Background="#C8D9F5" Width="92" HorizontalAlignment="Left" CornerRadius="8,0,0,0">
+                            <Viewbox Margin="10,8">
+                                <TextBlock Text="🔑" Foreground="Black" />
+                            </Viewbox>
+                        </Border>
+                        <Grid Grid.Column="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" Background="#F9E88C" CornerRadius="0,8,0,0" Padding="10,12,12,12">
+                                <TextBlock Text="АИС Отдел кадров" FontSize="17" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            </Border>
+                            <Border Grid.Row="1" Background="#F8E07B" Padding="10,4,12,12">
+                                <TextBlock Text="Версия 1.0.0.0" FontSize="12" Foreground="Black" HorizontalAlignment="Right" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Background="White" Padding="0" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Введите имя пользователя и пароль" VerticalAlignment="Center" Margin="16,0" FontSize="13" Foreground="Black" />
+                </Border>
+
+                <StackPanel Grid.Row="2" Margin="14" Spacing="8">
+                    <Grid ColumnDefinitions="130, *" VerticalAlignment="Center">
+                        <TextBlock Text="Имя пользователя" VerticalAlignment="Center" Foreground="Black" />
+                        <TextBox Grid.Column="1" x:Name="UsernameTextBox" MinHeight="30" Margin="8,0,0,0" />
+                    </Grid>
+                    <Grid ColumnDefinitions="130, *" VerticalAlignment="Center">
+                        <TextBlock Text="Пароль" VerticalAlignment="Center" Foreground="Black" />
+                        <TextBox Grid.Column="1" x:Name="PasswordTextBox" MinHeight="30" PasswordChar="*" Margin="8,0,0,0" />
+                    </Grid>
+                    <Grid Margin="0,4,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Вход" Width="84" Height="30" Background="#E0E0E0" Foreground="Black" Click="OnLoginClicked" />
+                        <Button Grid.Column="2" Content="Отмена" Width="84" Height="30" Background="#E0E0E0" Foreground="Black" Click="OnCancelClicked" />
+                    </Grid>
+                    <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Margin="0,4,0,0" TextWrapping="Wrap" />
                 </StackPanel>
-            </Border>
 
-            <TextBlock Text="Введите имя пользователя и пароль" Margin="16,10,16,0" FontSize="14" Foreground="Black" />
-
-            <Border Background="White" CornerRadius="6" Margin="16" Padding="12" BorderBrush="#B0C9E6" BorderThickness="1">
-                <StackPanel Spacing="10">
-                    <TextBlock Text="Имя пользователя" />
-                    <TextBox x:Name="UsernameTextBox" MinHeight="32" />
-
-                    <TextBlock Text="Пароль" />
-                    <TextBox x:Name="PasswordTextBox" MinHeight="32" PasswordChar="*" />
-                </StackPanel>
-            </Border>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="16,0,16,0" Spacing="8">
-                <Button Content="Отмена" Width="96" Click="OnCancelClicked" />
-                <Button Content="Войти" Width="96" Background="#1C6BE8" Foreground="White" Click="OnLoginClicked" />
-            </StackPanel>
-
-            <TextBlock x:Name="ErrorTextBlock" Foreground="Red" Margin="16,10,16,0" TextWrapping="Wrap" />
-        </StackPanel>
+                <Border Grid.Row="3" Background="#D0DCEB" CornerRadius="0,0,8,8" Padding="0">
+                    <Grid Margin="12,0" VerticalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock x:Name="InputLanguageTextBlock" Text="Язык ввода Английский" VerticalAlignment="Center" Foreground="Black" FontSize="11" />
+                        <TextBlock x:Name="CapsLockTextBlock" Grid.Column="1" Text="Клавиша CapsLock нажата" VerticalAlignment="Center" Foreground="Black" FontSize="11" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
     </Border>
 </Window>
