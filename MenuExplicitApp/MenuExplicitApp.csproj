@@ -28,6 +28,7 @@
     <ItemGroup>
       <Content Include="..\\menu.txt" CopyToOutputDirectory="PreserveNewest" Link="menu.txt" />
       <Content Include="..\\USERS.txt" CopyToOutputDirectory="PreserveNewest" Link="USERS.txt" />
+      <Content Include="Assets\\key.png" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
     <Target Name="CopyLibraryDlls" AfterTargets="Build">

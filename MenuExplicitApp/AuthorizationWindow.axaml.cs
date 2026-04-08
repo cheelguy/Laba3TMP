@@ -9,6 +9,7 @@ using System.Text;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media.Imaging;
 using Avalonia.Threading;
 
 namespace MenuExplicitApp;
@@ -16,10 +17,33 @@ namespace MenuExplicitApp;
 public partial class AuthorizationWindow : Window
 {
     private readonly DispatcherTimer _keyboardStatusTimer;
+    private bool _isExpanded;
 
     public AuthorizationWindow()
     {
         InitializeComponent();
+        var imagePath = Path.Combine(AppContext.BaseDirectory, "Assets", "key.png");
+        System.Diagnostics.Debug.WriteLine($"Image path: {imagePath}");
+        System.Diagnostics.Debug.WriteLine($"File exists: {File.Exists(imagePath)}");
+        try
+        {
+            if (File.Exists(imagePath))
+            {
+                var imageData = File.ReadAllBytes(imagePath);
+                var memoryStream = new MemoryStream(imageData);
+                KeyImage.Source = new Bitmap(memoryStream);
+                System.Diagnostics.Debug.WriteLine("Image loaded successfully");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine($"File not found: {imagePath}");
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Failed to load key image: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"Stack trace: {ex.StackTrace}");
+        }
         _keyboardStatusTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
         _keyboardStatusTimer.Tick += (_, _) => UpdateKeyboardStatus();
         _keyboardStatusTimer.Start();
@@ -104,6 +128,13 @@ public partial class AuthorizationWindow : Window
     private void OnCancelClicked(object? sender, RoutedEventArgs e)
     {
         Close();
+    }
+
+    private void OnToggleWindowSizeClicked(object? sender, RoutedEventArgs e)
+    {
+        _isExpanded = !_isExpanded;
+        Width = _isExpanded ? 520 : 420;
+        Height = _isExpanded ? 340 : 250;
     }
 
     private void UpdateKeyboardStatus()

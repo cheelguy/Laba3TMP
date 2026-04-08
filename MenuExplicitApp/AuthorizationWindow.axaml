@@ -15,44 +15,43 @@
                     <RowDefinition Height="28" />
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" Background="#F8E07B" CornerRadius="8,8,0,0" Padding="0" HorizontalAlignment="Stretch">
+                <Border Grid.Row="0" Background="#ffe57e" CornerRadius="8,8,0,0" Padding="0" HorizontalAlignment="Stretch">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="92" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Border Background="#C8D9F5" Width="92" HorizontalAlignment="Left" CornerRadius="8,0,0,0">
-                            <Viewbox Margin="10,8">
-                                <TextBlock Text="🔑" Foreground="Black" />
-                            </Viewbox>
+                            <Image x:Name="KeyImage" Width="56" Height="56" HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
+
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Background="#F9E88C" CornerRadius="0,8,0,0" Padding="10,12,12,12">
-                                <TextBlock Text="АИС Отдел кадров" FontSize="17" FontWeight="Bold" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                            <Border Grid.Row="0" Background="#FEF7C5" CornerRadius="0,8,0,0" Padding="10,12,12,12">
+                                <TextBlock Text="АИС Отдел кадров" FontSize="14" FontWeight="Normal" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Right" />
                             </Border>
-                            <Border Grid.Row="1" Background="#F8E07B" Padding="10,4,12,12">
-                                <TextBlock Text="Версия 1.0.0.0" FontSize="12" Foreground="Black" HorizontalAlignment="Right" />
+                            <Border Grid.Row="1" Background="#ffd11a" Padding="10,4,12,12">
+                                <TextBlock Text="Версия 1.0.0.0" FontSize="14" FontWeight="Normal" Foreground="Black" HorizontalAlignment="Right" />
                             </Border>
                         </Grid>
                     </Grid>
                 </Border>
 
                 <Border Grid.Row="1" Background="White" Padding="0" HorizontalAlignment="Stretch">
-                    <TextBlock Text="Введите имя пользователя и пароль" VerticalAlignment="Center" Margin="16,0" FontSize="13" Foreground="Black" />
+                    <TextBlock Text="Введите имя пользователя и пароль" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right" Margin="0,0,16,0" FontSize="13" Foreground="Black" />
                 </Border>
 
                 <StackPanel Grid.Row="2" Margin="14" Spacing="8">
                     <Grid ColumnDefinitions="130, *" VerticalAlignment="Center">
                         <TextBlock Text="Имя пользователя" VerticalAlignment="Center" Foreground="Black" />
-                        <TextBox Grid.Column="1" x:Name="UsernameTextBox" MinHeight="30" Margin="8,0,0,0" />
+                        <TextBox Grid.Column="1" x:Name="UsernameTextBox" MinHeight="30" Margin="8,0,0,0" Background="White" Foreground="Black" />
                     </Grid>
                     <Grid ColumnDefinitions="130, *" VerticalAlignment="Center">
                         <TextBlock Text="Пароль" VerticalAlignment="Center" Foreground="Black" />
-                        <TextBox Grid.Column="1" x:Name="PasswordTextBox" MinHeight="30" PasswordChar="*" Margin="8,0,0,0" />
+                        <TextBox Grid.Column="1" x:Name="PasswordTextBox" MinHeight="30" PasswordChar="*" Margin="8,0,0,0" Background="White" Foreground="Black" />
                     </Grid>
                     <Grid Margin="0,4,0,0">
                         <Grid.ColumnDefinitions>
@@ -67,13 +66,37 @@
                 </StackPanel>
 
                 <Border Grid.Row="3" Background="#D0DCEB" CornerRadius="0,0,8,8" Padding="0">
-                    <Grid Margin="12,0" VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock x:Name="InputLanguageTextBlock" Text="Язык ввода Английский" VerticalAlignment="Center" Foreground="Black" FontSize="11" />
-                        <TextBlock x:Name="CapsLockTextBlock" Grid.Column="1" Text="Клавиша CapsLock нажата" VerticalAlignment="Center" Foreground="Black" FontSize="11" />
+                    <Grid>
+                        <Border Background="#C8D9F5" Margin="12,4,12,4" CornerRadius="4" Padding="10,4">
+                            <Grid VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock x:Name="InputLanguageTextBlock" Text="Язык ввода Английский" VerticalAlignment="Center" Foreground="Black" FontSize="12" FontWeight="Normal" />
+                                <TextBlock x:Name="CapsLockTextBlock" Grid.Column="1" Text="Клавиша CapsLock нажата" VerticalAlignment="Center" Foreground="Black" FontSize="12" FontWeight="Normal" Margin="18,0,8,0" />
+                                <Button Grid.Column="2" x:Name="ToggleSizeButton" Width="26" Height="22" Background="#D0DCEB" BorderBrush="#A0A9B8" BorderThickness="1" CornerRadius="3" Click="OnToggleWindowSizeClicked">
+                                    <Grid Margin="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Row="0" Grid.Column="0" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Border Grid.Row="0" Grid.Column="1" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Border Grid.Row="0" Grid.Column="2" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Border Grid.Row="1" Grid.Column="0" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Border Grid.Row="1" Grid.Column="1" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Border Grid.Row="1" Grid.Column="2" Width="3" Height="3" Background="#707A88" CornerRadius="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Grid>
+                                </Button>
+                            </Grid>
+                        </Border>
                     </Grid>
                 </Border>
             </Grid>
